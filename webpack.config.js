@@ -38,11 +38,21 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        //use: ['style-loader','css-loader', 'postcss-loader', 'sass-loader'] //Wybierz tą opcję jeśli potrzebujesz odświeżania stylów
+        use: ExtractTextPlugin.extract({ //Wybierz tą opcję jeśli nie potrzebujesz odświeżania stylów
          fallback: "style-loader",
          use: ['css-loader', 'postcss-loader', 'sass-loader']
        })
-     }
+     },
+     {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      }
     ]
   },
   plugins: [
